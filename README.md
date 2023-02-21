@@ -1,8 +1,8 @@
 ### Sweetest-Nightmare (Student Project)
 (My 1st Semester Project at "S4G School for Games Berlin").
 
-Homepage: https://echoes-of-the-wisps.school4games.net/ <br>
-Itch Page: https://s4g.itch.io/echoesofthewisps
+Homepage: https://sweetest-nightmare.school4games.net/ <br>
+Itch Page: https://s4g.itch.io/sweetest-nightmare
 
 #### 2D side-scroller stealth game made with Unity
 "Sweetest Nightmare" is a 2D side-scroller Platformer Game, set in a "Dark Candy" World, where you create your own timed platforms to overcome the hazardous environment.
