@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cutScenePrototypeMusic.mp3-3797cf09e823630bc6211ec42dcd585a.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/music/cutScenePrototypeMusic.mp3"
+dest_files=[ "res://.import/cutScenePrototypeMusic.mp3-3797cf09e823630bc6211ec42dcd585a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

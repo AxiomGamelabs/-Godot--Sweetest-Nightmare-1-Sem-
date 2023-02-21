@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/trapHeavy.mp3-2e44e908c85f18e180cdb41b4acf914b.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/trapsSfx/trapHeavy.mp3"
+dest_files=[ "res://.import/trapHeavy.mp3-2e44e908c85f18e180cdb41b4acf914b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/uiButton.mp3-326f4ecb6fa2507cb3b3e1977babfda5.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/uiSfx/uiButton.mp3"
+dest_files=[ "res://.import/uiButton.mp3-326f4ecb6fa2507cb3b3e1977babfda5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

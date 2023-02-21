@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/clockRing2.mp3-ba8ac25461dd3645644417af9cc1a299.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/others/clockRing2.mp3"
+dest_files=[ "res://.import/clockRing2.mp3-ba8ac25461dd3645644417af9cc1a299.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/sprites/playerBubbles/Bubble.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.47205, 1 )
+colors = PoolColorArray( 0.00392157, 0.00392157, 0.00392157, 0.00392157, 1, 1, 1, 1, 1, 1, 1, 0.00392157 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 128.0
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 15.69
+angle = 522.4
+scale = 0.1
+scale_random = 1.0
+color = Color( 1, 0.764706, 0.843137, 1 )
+color_ramp = SubResource( 3 )
+
+[node name="jellyAcidBubbles" type="Particles2D"]
+rotation = 3.14159
+scale = Vector2( 0.1, 0.1 )
+lifetime = 5.3
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 1 )

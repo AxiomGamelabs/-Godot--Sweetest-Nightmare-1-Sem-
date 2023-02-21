@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/videoScripts/cutsceneAnimation.gd" type="Script" id=1]
+[ext_resource path="res://scenes/videoScenes/Komp-1_1.ogv" type="VideoStream" id=2]
+[ext_resource path="res://scenes/videoScenes/logoIntro.ogv" type="VideoStream" id=3]
+[ext_resource path="res://uiThemes/uncannyTheme.tres" type="Theme" id=4]
+
+[node name="introSequence" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 4 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="logoIntro" type="VideoPlayer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+stream = ExtResource( 3 )
+autoplay = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cutSceneIntro" type="VideoPlayer" parent="."]
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+stream = ExtResource( 2 )
+volume_db = -80.0
+
+[node name="uiElements" type="CanvasLayer" parent="."]
+
+[node name="ui" type="Control" parent="uiElements"]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pressSpaceToSkipLabel" type="Label" parent="uiElements/ui"]
+margin_left = 23.0
+margin_top = 16.0
+margin_right = 417.0
+margin_bottom = 89.0
+text = "PRESS SPACE TO SKIP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="musicVolumeLabel" type="Label" parent="uiElements/ui"]
+margin_left = 1330.0
+margin_top = 14.0
+margin_right = 1576.0
+margin_bottom = 87.0
+rect_scale = Vector2( 0.7, 0.7 )
+text = "Music Volume:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="musicVolume" type="HSlider" parent="uiElements/ui"]
+margin_left = 1483.0
+margin_top = 24.0
+margin_right = 2083.0
+margin_bottom = 74.0
+rect_scale = Vector2( 0.7, 0.7 )
+min_value = -80.0
+max_value = 0.0
+value = -60.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="finished" from="logoIntro" to="." method="_on_logoIntro_finished"]
+[connection signal="finished" from="cutSceneIntro" to="." method="_on_cutSceneIntro_finished"]
+[connection signal="value_changed" from="uiElements/ui/musicVolume" to="." method="_on_musicVolume_value_changed"]

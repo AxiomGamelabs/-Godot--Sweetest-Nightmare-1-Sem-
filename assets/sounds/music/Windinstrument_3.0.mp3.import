@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Windinstrument_3.0.mp3-46bc66a29f43b5ffecee5f80daf9f6bb.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/music/Windinstrument_3.0.mp3"
+dest_files=[ "res://.import/Windinstrument_3.0.mp3-46bc66a29f43b5ffecee5f80daf9f6bb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

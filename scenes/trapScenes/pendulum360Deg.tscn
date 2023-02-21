@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/sprites/traps/passive360Pendulum.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/traps/pendulumGumString.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/traps/pendulumAnchor.png" type="Texture" id=3]
+[ext_resource path="res://assets/sounds/sfx/trapsSfx/pendulumWeak.wav" type="AudioStream" id=4]
+[ext_resource path="res://scripts/trapScripts/pendulum360Deg.gd" type="Script" id=5]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 5.0
+height = 108.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 27.0185
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 33.0606
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 17.0294
+
+[node name="pendulum360Deg" type="StaticBody2D"]
+position = Vector2( 301, 183 )
+collision_mask = 0
+script = ExtResource( 5 )
+
+[node name="pendulumArm" type="RigidBody2D" parent="."]
+collision_layer = 256
+collision_mask = 8
+linear_damp = 0.0
+
+[node name="sprite" type="Sprite" parent="pendulumArm"]
+position = Vector2( 1, 61 )
+scale = Vector2( 0.110658, 0.110658 )
+texture = ExtResource( 2 )
+
+[node name="dontDestroyPlayerPlatformCollisionShape2D" type="CollisionShape2D" parent="pendulumArm"]
+position = Vector2( 0, 56 )
+shape = SubResource( 2 )
+
+[node name="pendulumBall" type="RigidBody2D" parent="."]
+position = Vector2( 0, 122 )
+collision_layer = 256
+collision_mask = 8
+linear_damp = 0.0
+angular_damp = 0.0
+
+[node name="sprite" type="Sprite" parent="pendulumBall"]
+position = Vector2( 1, 0 )
+scale = Vector2( 0.0964392, 0.0964392 )
+texture = ExtResource( 1 )
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="pendulumBall"]
+shape = SubResource( 3 )
+
+[node name="applyImpulseTimer" type="Timer" parent="pendulumBall"]
+wait_time = 7.0
+autostart = true
+
+[node name="damageArea2D" type="Area2D" parent="pendulumBall"]
+collision_layer = 128
+collision_mask = 0
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="pendulumBall/damageArea2D"]
+shape = SubResource( 4 )
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( 0, 7 )
+scale = Vector2( 0.0734132, 0.0734132 )
+texture = ExtResource( 3 )
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="platformArmPinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+node_b = NodePath("../pendulumArm")
+
+[node name="armBallPinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2( 0, 122 )
+node_a = NodePath("../pendulumArm")
+node_b = NodePath("../pendulumBall")
+
+[node name="trapSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "sfx"
+
+[connection signal="timeout" from="pendulumBall/applyImpulseTimer" to="." method="_on_applyImpulseTimer_timeout"]
+[connection signal="body_entered" from="pendulumBall/damageArea2D" to="." method="_on_damageArea2D_body_entered"]

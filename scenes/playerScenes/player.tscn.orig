@@ -1,0 +1,735 @@
+[gd_scene load_steps=117 format=2]
+
+[ext_resource path="res://assets/animations/playerAnimationsThickerOutlines.png" type="Texture" id=1]
+[ext_resource path="res://scripts/playerScripts/player.gd" type="Script" id=2]
+[ext_resource path="res://scripts/playerScripts/shoot.gd" type="Script" id=3]
+[ext_resource path="res://scripts/playerScripts/playerStatesScripts/jumping.gd" type="Script" id=4]
+[ext_resource path="res://scripts/playerScripts/playerStatesScripts/falling.gd" type="Script" id=5]
+[ext_resource path="res://scripts/playerScripts/playerStatesScripts/doubleJumping.gd" type="Script" id=6]
+[ext_resource path="res://scripts/playerScripts/playerStatesScripts/idling.gd" type="Script" id=7]
+[ext_resource path="res://scripts/playerScripts/playerStatesScripts/running.gd" type="Script" id=8]
+[ext_resource path="res://scripts/playerScripts/playerStatesScripts/drowning.gd" type="Script" id=9]
+[ext_resource path="res://scripts/playerScripts/playerStatesScripts/dying.gd" type="Script" id=10]
+[ext_resource path="res://scripts/playerScripts/playerStatesScripts/sliding.gd" type="Script" id=11]
+[ext_resource path="res://sounds/sfx/playerSfx/bubbleShoot2.wav" type="AudioStream" id=12]
+[ext_resource path="res://sounds/sfx/playerSfx/playerHurt2.wav" type="AudioStream" id=13]
+[ext_resource path="res://sounds/sfx/playerSfx/platformBirth.wav" type="AudioStream" id=14]
+[ext_resource path="res://sounds/sfx/playerSfx/playerDeath.wav" type="AudioStream" id=15]
+[ext_resource path="res://sounds/sfx/playerSfx/playerJump2.wav" type="AudioStream" id=16]
+[ext_resource path="res://sounds/sfx/playerSfx/playerDoubblejump2.wav" type="AudioStream" id=17]
+[ext_resource path="res://sounds/sfx/playerSfx/runningOnFloor.wav" type="AudioStream" id=18]
+[ext_resource path="res://sounds/sfx/trapsSfx/jellySplash.wav" type="AudioStream" id=19]
+[ext_resource path="res://sounds/sfx/playerSfx/runningOnFloor7.wav" type="AudioStream" id=20]
+[ext_resource path="res://sounds/sfx/playerSfx/runningOnFloor4.wav" type="AudioStream" id=21]
+[ext_resource path="res://sounds/sfx/playerSfx/runningOnFloor3.wav" type="AudioStream" id=23]
+[ext_resource path="res://sounds/sfx/playerSfx/runningOnFloor6.wav" type="AudioStream" id=24]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 19.0707
+height = 51.8586
+
+[sub_resource type="Animation" id=83]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=90]
+resource_name = "blink"
+
+[sub_resource type="Animation" id=2]
+resource_name = "doubleJump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 19, 20, 21, 22, 23, 23 ]
+}
+
+[sub_resource type="Animation" id=84]
+resource_name = "drowning"
+length = 0.95
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.5, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 78, 79, 80, 81, 82, 83 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "deletePlayer"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "displayDefeatMenu"
+} ]
+}
+
+[sub_resource type="Animation" id=87]
+resource_name = "dying"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 72, 73, 74, 75, 76, 77 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "deletePlayer"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "displayDefeatMenu"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "falling"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 31, 32, 33, 34, 35, 35 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 37, 38, 39, 40, 41, 41 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+length = 0.95
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 5 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "jump"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.05, 0.08, 0.12, 0.16 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 16, 17, 17 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 43, 44, 45, 46, 47, 47 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 7, 8, 9, 10, 11, 11 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("states/running")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 55, 56, 57, 58, 59, 59 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 25, 26, 27, 28, 29, 29 ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 49, 50, 51, 52, 53, 53 ]
+}
+
+[sub_resource type="Animation" id=91]
+resource_name = "sliding"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.1, 1.5, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 84, 85, 86, 87, 88, 89 ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 67, 68, 69, 70, 71, 71 ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 61, 62, 63, 64, 65, 65 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 43, 44, 45, 46, 47, 48 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "doubleJump"
+
+[sub_resource type="AnimationNodeAnimation" id=85]
+animation = "drowning"
+
+[sub_resource type="AnimationNodeAnimation" id=88]
+animation = "dying"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "falling"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "hurt"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "jump"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "reloadEnergy"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "run"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "shootFromAir"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "shootFromIdle"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "shootFromRun"
+
+[sub_resource type="AnimationNodeAnimation" id=92]
+animation = "sliding"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "spawnPlatformFromAir"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "spawnPlatformFromIdle"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "spawnPlatformFromRun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=53]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=59]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=64]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=65]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=66]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=67]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=71]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=72]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=74]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=75]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=76]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=79]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=60]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=69]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=70]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=73]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=80]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=81]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=82]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=86]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=89]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=93]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=94]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=95]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachine" id=77]
+states/doubleJump/node = SubResource( 15 )
+states/doubleJump/position = Vector2( 108, 384 )
+states/drowning/node = SubResource( 85 )
+states/drowning/position = Vector2( 1484.54, 193.727 )
+states/dying/node = SubResource( 88 )
+states/dying/position = Vector2( 1484.54, 51.639 )
+states/falling/node = SubResource( 16 )
+states/falling/position = Vector2( 1264.79, 193.727 )
+states/hurt/node = SubResource( 17 )
+states/hurt/position = Vector2( 811.637, -218.817 )
+states/idle/node = SubResource( 18 )
+states/idle/position = Vector2( 78, 98 )
+states/jump/node = SubResource( 19 )
+states/jump/position = Vector2( 624, 384 )
+states/reloadEnergy/node = SubResource( 20 )
+states/reloadEnergy/position = Vector2( 1126.64, -166.817 )
+states/run/node = SubResource( 21 )
+states/run/position = Vector2( 970, 152 )
+states/shootFromAir/node = SubResource( 22 )
+states/shootFromAir/position = Vector2( 507, -275.817 )
+states/shootFromIdle/node = SubResource( 23 )
+states/shootFromIdle/position = Vector2( 47, -267.817 )
+states/shootFromRun/node = SubResource( 24 )
+states/shootFromRun/position = Vector2( 1271.79, -9.81723 )
+states/sliding/node = SubResource( 92 )
+states/sliding/position = Vector2( 1360.54, 376.639 )
+states/spawnPlatformFromAir/node = SubResource( 25 )
+states/spawnPlatformFromAir/position = Vector2( 682.637, 573 )
+states/spawnPlatformFromIdle/node = SubResource( 26 )
+states/spawnPlatformFromIdle/position = Vector2( 265.637, -151.817 )
+states/spawnPlatformFromRun/node = SubResource( 27 )
+states/spawnPlatformFromRun/position = Vector2( 1071.64, 573 )
+transitions = [ "idle", "run", SubResource( 28 ), "run", "idle", SubResource( 29 ), "idle", "jump", SubResource( 30 ), "jump", "idle", SubResource( 31 ), "run", "jump", SubResource( 32 ), "jump", "doubleJump", SubResource( 33 ), "doubleJump", "idle", SubResource( 34 ), "run", "shootFromRun", SubResource( 39 ), "run", "hurt", SubResource( 41 ), "idle", "reloadEnergy", SubResource( 44 ), "run", "reloadEnergy", SubResource( 45 ), "reloadEnergy", "run", SubResource( 46 ), "jump", "reloadEnergy", SubResource( 47 ), "reloadEnergy", "jump", SubResource( 48 ), "doubleJump", "reloadEnergy", SubResource( 49 ), "reloadEnergy", "doubleJump", SubResource( 50 ), "jump", "shootFromAir", SubResource( 51 ), "shootFromAir", "jump", SubResource( 52 ), "doubleJump", "shootFromAir", SubResource( 53 ), "shootFromAir", "doubleJump", SubResource( 54 ), "idle", "spawnPlatformFromIdle", SubResource( 55 ), "jump", "spawnPlatformFromAir", SubResource( 56 ), "spawnPlatformFromAir", "jump", SubResource( 57 ), "doubleJump", "spawnPlatformFromAir", SubResource( 58 ), "spawnPlatformFromAir", "doubleJump", SubResource( 59 ), "idle", "shootFromIdle", SubResource( 61 ), "jump", "hurt", SubResource( 62 ), "hurt", "jump", SubResource( 63 ), "doubleJump", "hurt", SubResource( 64 ), "hurt", "doubleJump", SubResource( 65 ), "shootFromIdle", "idle", SubResource( 66 ), "reloadEnergy", "idle", SubResource( 67 ), "hurt", "idle", SubResource( 68 ), "shootFromRun", "run", SubResource( 71 ), "spawnPlatformFromIdle", "idle", SubResource( 72 ), "shootFromIdle", "spawnPlatformFromIdle", SubResource( 74 ), "run", "spawnPlatformFromRun", SubResource( 75 ), "spawnPlatformFromRun", "run", SubResource( 76 ), "hurt", "run", SubResource( 79 ), "jump", "falling", SubResource( 35 ), "doubleJump", "falling", SubResource( 36 ), "run", "falling", SubResource( 37 ), "falling", "run", SubResource( 38 ), "falling", "hurt", SubResource( 42 ), "falling", "spawnPlatformFromAir", SubResource( 60 ), "shootFromAir", "falling", SubResource( 69 ), "falling", "shootFromAir", SubResource( 70 ), "spawnPlatformFromAir", "falling", SubResource( 73 ), "hurt", "falling", SubResource( 80 ), "falling", "jump", SubResource( 81 ), "falling", "doubleJump", SubResource( 82 ), "falling", "drowning", SubResource( 86 ), "falling", "dying", SubResource( 89 ), "falling", "sliding", SubResource( 93 ), "sliding", "falling", SubResource( 94 ), "sliding", "jump", SubResource( 95 ) ]
+start_node = "idle"
+graph_offset = Vector2( -30.463, -289.361 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=78]
+
+[node name="player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 441
+script = ExtResource( 2 )
+slipperyFactorOnMiniPlatform = 100
+slipperyFactorOnYellowTrap = 800
+
+[node name="sfx" type="Node2D" parent="."]
+
+[node name="hurtSfx" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 13 )
+bus = "sfx"
+
+[node name="spawnPlatformSfx" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 14 )
+bus = "sfx"
+
+[node name="sprite" type="Sprite" parent="."]
+scale = Vector2( 0.228434, 0.228434 )
+texture = ExtResource( 1 )
+hframes = 6
+vframes = 15
+frame = 2
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 7 )
+shape = SubResource( 1 )
+
+[node name="states" type="Node2D" parent="."]
+
+[node name="idling" type="Node2D" parent="states"]
+script = ExtResource( 7 )
+
+[node name="running" type="Node2D" parent="states"]
+script = ExtResource( 8 )
+
+[node name="runningOnFloorSfx" type="AudioStreamPlayer" parent="states/running"]
+stream = ExtResource( 18 )
+bus = "sfx"
+
+[node name="runningOnFloor2" type="AudioStreamPlayer" parent="states/running"]
+stream = ExtResource( 24 )
+bus = "sfx"
+
+[node name="runningOnFloor3" type="AudioStreamPlayer" parent="states/running"]
+stream = ExtResource( 23 )
+bus = "sfx"
+
+[node name="runningOnFloor4" type="AudioStreamPlayer" parent="states/running"]
+stream = ExtResource( 21 )
+bus = "sfx"
+
+[node name="runningOnFloor6" type="AudioStreamPlayer" parent="states/running"]
+stream = ExtResource( 24 )
+bus = "sfx"
+
+[node name="runningOnFloor7" type="AudioStreamPlayer" parent="states/running"]
+stream = ExtResource( 20 )
+bus = "sfx"
+
+[node name="jumping" type="Node2D" parent="states"]
+script = ExtResource( 4 )
+
+[node name="jumpSfx" type="AudioStreamPlayer" parent="states/jumping"]
+stream = ExtResource( 16 )
+bus = "sfx"
+
+[node name="doubleJumping" type="Node2D" parent="states"]
+script = ExtResource( 6 )
+
+[node name="doubleJumpSfx" type="AudioStreamPlayer" parent="states/doubleJumping"]
+stream = ExtResource( 17 )
+bus = "sfx"
+
+[node name="falling" type="Node2D" parent="states"]
+script = ExtResource( 5 )
+
+[node name="sliding" type="Node2D" parent="states"]
+script = ExtResource( 11 )
+
+[node name="drowning" type="Node2D" parent="states"]
+script = ExtResource( 9 )
+
+[node name="drowningSfx" type="AudioStreamPlayer" parent="states/drowning"]
+stream = ExtResource( 19 )
+bus = "sfx"
+
+[node name="dying" type="Node2D" parent="states"]
+script = ExtResource( 10 )
+
+[node name="deathSfx" type="AudioStreamPlayer" parent="states/dying"]
+stream = ExtResource( 15 )
+bus = "sfx"
+
+[node name="shoot" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="shootSfx" type="AudioStreamPlayer" parent="shoot"]
+stream = ExtResource( 12 )
+bus = "sfx"
+
+[node name="bulletSpawnRotator" type="Node2D" parent="shoot"]
+
+[node name="bulletSpawnPoint" type="Position2D" parent="shoot/bulletSpawnRotator"]
+position = Vector2( 67.7848, 0 )
+
+[node name="animationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 83 )
+anims/blink = SubResource( 90 )
+anims/doubleJump = SubResource( 2 )
+anims/drowning = SubResource( 84 )
+anims/dying = SubResource( 87 )
+anims/falling = SubResource( 3 )
+anims/hurt = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/jump = SubResource( 6 )
+anims/reloadEnergy = SubResource( 7 )
+anims/run = SubResource( 8 )
+anims/shootFromAir = SubResource( 9 )
+anims/shootFromIdle = SubResource( 10 )
+anims/shootFromRun = SubResource( 11 )
+anims/sliding = SubResource( 91 )
+anims/spawnPlatformFromAir = SubResource( 12 )
+anims/spawnPlatformFromIdle = SubResource( 13 )
+anims/spawnPlatformFromRun = SubResource( 14 )
+
+[node name="animationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 77 )
+anim_player = NodePath("../animationPlayer")
+active = true
+parameters/playback = SubResource( 78 )

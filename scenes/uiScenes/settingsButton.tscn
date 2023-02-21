@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="settingsButton" type="Button"]
+margin_top = 139.0
+margin_right = 652.0
+margin_bottom = 275.0
+size_flags_vertical = 3
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}

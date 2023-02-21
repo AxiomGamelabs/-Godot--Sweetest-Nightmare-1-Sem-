@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/jellyScripts/jellyBody.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/jelly/jellyTextureRed.png" type="Texture" id=2]
+[ext_resource path="res://scripts/jellyScripts/smoothPathModified.gd" type="Script" id=3]
+[ext_resource path="res://scenes/particleEffectsScenes/jellyAcidBubbles.tscn" type="PackedScene" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://shaders/MaskGRADIENT2.png" type="Texture" id=6]
+[ext_resource path="res://shaders/fogShaderJelly2.gdshader" type="Shader" id=7]
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array(  )
+}
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 7 )
+shader_param/cutoff = 1.0
+shader_param/smooth_size = 0.764
+shader_param/color = Vector3( 0.8, 0.7, 0.8 )
+shader_param/OCTAVES = 2
+shader_param/mask = ExtResource( 6 )
+
+[node name="jellyBody" type="Node2D"]
+position = Vector2( 6, 5 )
+script = ExtResource( 1 )
+d = 0.09
+
+[node name="jellyPolygon" type="Polygon2D" parent="."]
+modulate = Color( 2.05, 1, 1, 1 )
+texture = ExtResource( 2 )
+
+[node name="jellyAcidBubbles1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 128, 102 )
+
+[node name="jellyAcidBubbles2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 79, 100 )
+
+[node name="jellyBorder" type="Path2D" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 1 )
+curve = SubResource( 2 )
+script = ExtResource( 3 )
+
+[node name="jellyBodyArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="jellyBodyArea"]
+
+[node name="fogShaderSprite" type="Sprite" parent="."]
+process_priority = 500
+show_behind_parent = true
+material = SubResource( 3 )
+position = Vector2( 115, 18 )
+scale = Vector2( 5.25781, 5.25781 )
+texture = ExtResource( 5 )
+
+[connection signal="body_entered" from="jellyBodyArea" to="." method="_on_jellyBodyArea_body_entered"]

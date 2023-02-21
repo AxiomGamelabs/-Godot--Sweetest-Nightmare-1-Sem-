@@ -1,0 +1,165 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scripts/uiScripts/settingsMenuFromMainMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/ui/pauseMenu/playButtonNormal.png" type="Texture" id=2]
+[ext_resource path="res://assets/sounds/sfx/uiSfx/uiButton2.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/ui/pauseMenu/playButtonHover.png" type="Texture" id=4]
+[ext_resource path="res://shaders/blurPauseMenuShader.gdshader" type="Shader" id=5]
+[ext_resource path="res://uiThemes/uncannyTheme.tres" type="Theme" id=6]
+[ext_resource path="res://assets/ui/settingsMenu/settingsTitle.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/settingsMenu/backButtonHover.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/settingsMenu/backButtonNormal.png" type="Texture" id=9]
+[ext_resource path="res://assets/sounds/sfx/uiSfx/uiHoverButtons.wav" type="AudioStream" id=10]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 5 )
+shader_param/blurFactor = 3.097
+
+[node name="settingsMenuFromPauseMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 6 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grayOverlay" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.345098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="blurShader" type="ColorRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.188235, 0.0627451, 0.0627451, 0.819608 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -321.0
+margin_top = 147.0
+margin_right = 286.0
+margin_bottom = 308.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pauseButtonTopRx" type="TextureButton" parent="."]
+margin_left = 1812.0
+margin_top = 25.0
+margin_right = 1885.0
+margin_bottom = 102.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 4 )
+
+[node name="slidersContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -232.0
+margin_top = 383.0
+margin_right = 368.0
+margin_bottom = 608.0
+custom_constants/separation = 32
+
+[node name="masterVolume" type="HSlider" parent="slidersContainer"]
+visible = false
+margin_right = 501.0
+margin_bottom = 45.0
+min_value = -80.0
+max_value = 0.0
+value = -60.0
+
+[node name="musicVolume" type="HSlider" parent="slidersContainer"]
+margin_right = 600.0
+margin_bottom = 50.0
+min_value = -80.0
+max_value = 0.0
+value = -60.0
+
+[node name="sfxVolume" type="HSlider" parent="slidersContainer"]
+margin_top = 82.0
+margin_right = 600.0
+margin_bottom = 132.0
+min_value = -80.0
+max_value = 0.0
+value = -60.0
+
+[node name="uiVolume" type="HSlider" parent="slidersContainer"]
+margin_top = 164.0
+margin_right = 600.0
+margin_bottom = 214.0
+min_value = -80.0
+max_value = 0.0
+value = -60.0
+
+[node name="labelsContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -483.0
+margin_top = 368.0
+margin_right = -237.0
+margin_bottom = 599.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="masterVolumeLabel" type="Label" parent="labelsContainer"]
+visible = false
+margin_right = 246.0
+margin_bottom = 73.0
+text = "Master Volume:"
+
+[node name="musicVolumeLabel" type="Label" parent="labelsContainer"]
+margin_right = 246.0
+margin_bottom = 73.0
+text = "Music Volume:"
+
+[node name="sfxVolumeLabel" type="Label" parent="labelsContainer"]
+margin_top = 79.0
+margin_right = 246.0
+margin_bottom = 152.0
+text = "Sfx Volume:"
+
+[node name="uiVolumeLabel" type="Label" parent="labelsContainer"]
+margin_top = 158.0
+margin_right = 246.0
+margin_bottom = 231.0
+text = "UI Volume:"
+
+[node name="backButtonArrow" type="TextureButton" parent="."]
+margin_left = 1215.0
+margin_top = 653.0
+margin_right = 1335.0
+margin_bottom = 745.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 8 )
+expand = true
+
+[node name="clickBtnSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "ui"
+
+[node name="hoverBtnSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+bus = "ui"
+
+[connection signal="mouse_entered" from="pauseButtonTopRx" to="." method="_on_pauseButtonTopRx_mouse_entered"]
+[connection signal="value_changed" from="slidersContainer/masterVolume" to="." method="_on_masterVolume_value_changed"]
+[connection signal="value_changed" from="slidersContainer/musicVolume" to="." method="_on_musicVolume_value_changed"]
+[connection signal="value_changed" from="slidersContainer/sfxVolume" to="." method="_on_sfxVolume_value_changed"]
+[connection signal="value_changed" from="slidersContainer/uiVolume" to="." method="_on_uiVolume_value_changed"]
+[connection signal="button_up" from="backButtonArrow" to="." method="_on_backButtonArrow_button_up"]
+[connection signal="mouse_entered" from="backButtonArrow" to="." method="_on_backButtonArrow_mouse_entered"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/sprites/lighting & glow/lightFade.png" type="Texture" id=1]
+
+[node name="jellyGlow" type="Sprite"]
+modulate = Color( 2.32, 1, 1, 0.81 )
+scale = Vector2( 0.633871, 0.633871 )
+texture = ExtResource( 1 )

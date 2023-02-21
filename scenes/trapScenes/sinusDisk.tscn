@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/sprites/traps/pendulumSwingBladeYellow.png" type="Texture" id=1]
+[ext_resource path="res://scripts/trapScripts/sinusDisk.gd" type="Script" id=2]
+[ext_resource path="res://scripts/trapScripts/sinusDiskTrail.gd" type="Script" id=3]
+[ext_resource path="res://assets/sounds/sfx/trapsSfx/sinusTrap3.mp3" type="AudioStream" id=4]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 2.17133, 0, 0, Vector2( 1, 0.990909 ), 1.05805, 0.0, 0, 0 ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 34.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 41.638
+
+[node name="sinusDisk" type="KinematicBody2D"]
+collision_layer = 64
+collision_mask = 8
+script = ExtResource( 2 )
+amplitude = 20.0
+
+[node name="trail2D" type="Line2D" parent="."]
+width = 25.0
+width_curve = SubResource( 1 )
+default_color = Color( 1, 0, 0.258824, 0.85098 )
+sharp_limit = 20.0
+round_precision = 10
+antialiased = true
+script = ExtResource( 3 )
+
+[node name="sprite" type="Sprite" parent="."]
+scale = Vector2( 0.0884557, 0.0884557 )
+texture = ExtResource( 1 )
+
+[node name="destroyPlayerPlatformCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="damageArea2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="damageArea2D"]
+position = Vector2( -0.445435, 0 )
+shape = SubResource( 3 )
+
+[node name="trapSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+bus = "sfx"
+
+[connection signal="body_entered" from="damageArea2D" to="." method="_on_damageArea2D_body_entered"]

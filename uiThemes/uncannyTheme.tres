@@ -1,0 +1,79 @@
+[gd_resource type="Theme" load_steps=20 format=2]
+
+[ext_resource path="res://fonts/fontResources/uncannyFontResource.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/ui/hud/tooltipPanelLessTransparent.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/buttonsUncannyTheme/hover.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/buttonsUncannyTheme/normal.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/settingsMenu/grabberArea.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/settingsMenu/grabberSmall.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/settingsMenu/slider.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/loadingScreen/loadingBar.png" type="Texture" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 849, 152 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 849, 152 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 849, 152 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 600, 29 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 600, 29 )
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 600, 29 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 600, 29 )
+margin_left = 5.0
+margin_right = 5.0
+margin_top = 10.0
+margin_bottom = 10.0
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 733, 53 )
+
+[sub_resource type="StyleBoxTexture" id=10]
+region_rect = Rect2( 0, 0, 391, 261 )
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 745, 460 )
+margin_left = 20.0
+margin_right = 20.0
+margin_top = 10.0
+margin_bottom = 10.0
+
+[resource]
+default_font = ExtResource( 1 )
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/styles/focus = SubResource( 1 )
+Button/styles/hover = SubResource( 2 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 4 )
+HSlider/icons/grabber = ExtResource( 6 )
+HSlider/icons/grabber_highlight = ExtResource( 6 )
+HSlider/styles/grabber_area = SubResource( 5 )
+HSlider/styles/grabber_area_highlight = SubResource( 6 )
+HSlider/styles/slider = SubResource( 7 )
+ProgressBar/styles/bg = SubResource( 8 )
+ProgressBar/styles/fg = SubResource( 9 )
+TextEdit/styles/read_only = SubResource( 10 )
+TooltipPanel/styles/panel = SubResource( 11 )
+VBoxContainer/constants/separation = 6

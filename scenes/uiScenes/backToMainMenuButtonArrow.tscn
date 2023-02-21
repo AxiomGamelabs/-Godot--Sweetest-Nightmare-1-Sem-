@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/ui/settingsMenu/backButtonHover.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/settingsMenu/backButtonNormal.png" type="Texture" id=2]
+[ext_resource path="res://scripts/uiScripts/changeSceneButtonArrow.gd" type="Script" id=3]
+[ext_resource path="res://scenes/uiScenes/buttonSfx.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sounds/sfx/uiSfx/uiHoverButtons.wav" type="AudioStream" id=5]
+
+[node name="backToMainMenuButtonArrow" type="TextureButton"]
+margin_left = 1157.0
+margin_top = 829.0
+margin_right = 1277.0
+margin_bottom = 921.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 1 )
+expand = true
+script = ExtResource( 3 )
+nextScenePath = "res://scenes/uiScenes/menuScenes/mainMenu.tscn"
+
+[node name="buttonSfx" parent="." instance=ExtResource( 4 )]
+
+[node name="hoverBtnSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "ui"
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_backToMainMenuButtonArrow_mouse_entered"]

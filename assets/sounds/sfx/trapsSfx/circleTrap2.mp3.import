@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/circleTrap2.mp3-9c245fefd77bc8b87b9935adb4703700.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/trapsSfx/circleTrap2.mp3"
+dest_files=[ "res://.import/circleTrap2.mp3-9c245fefd77bc8b87b9935adb4703700.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

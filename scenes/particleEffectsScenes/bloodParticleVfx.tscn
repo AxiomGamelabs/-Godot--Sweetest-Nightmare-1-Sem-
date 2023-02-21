@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/sprites/particles/bloodTwo.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/particles/bloodOne.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Node2D
+
+func _ready():
+	$bloodParticleVfxPart1.emitting = true
+	$bloodParticleVfxPart2.emitting = true
+
+
+func _on_selfDestroyTimer_timeout():
+	queue_free()
+"
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+flatness = 1.0
+gravity = Vector3( 0, 150, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 1.0
+angular_velocity = 200.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 100.0
+radial_accel_random = 1.0
+scale = 0.07
+scale_random = 0.05
+color_ramp = SubResource( 2 )
+
+[node name="bloodParticleVfx" type="Node2D"]
+script = SubResource( 4 )
+
+[node name="bloodParticleVfxPart1" type="Particles2D" parent="."]
+scale = Vector2( 3, 3 )
+emitting = false
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource( 3 )
+texture = ExtResource( 2 )
+
+[node name="bloodParticleVfxPart2" type="Particles2D" parent="."]
+scale = Vector2( 3, 3 )
+emitting = false
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource( 3 )
+texture = ExtResource( 1 )
+
+[node name="selfDestroyTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="selfDestroyTimer" to="." method="_on_selfDestroyTimer_timeout"]

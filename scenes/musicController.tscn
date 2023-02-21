@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/sounds/music/Windinstrument_3.0.mp3" type="AudioStream" id=1]
+
+[node name="musicController" type="Node"]
+pause_mode = 2
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+autoplay = true
+bus = "music"

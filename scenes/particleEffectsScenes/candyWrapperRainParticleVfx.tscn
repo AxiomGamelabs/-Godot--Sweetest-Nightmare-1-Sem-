@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/sprites/particles/particleEffectCandyWrappers3.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/particles/particleEffectCandyWrappers2.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/particles/particleEffectCandyWrappers1.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.302139, 0.636364, 0.946524 )
+colors = PoolColorArray( 0.938462, 0.938462, 0.938462, 1, 0.701599, 0.775084, 0.859375, 0.537255, 0.956863, 0.968627, 0.980392, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.0151133, 0.331818 ), 0.0, 0.0, 0, 0, Vector2( 0.987406, 0.243182 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 128.0
+flag_disable_z = true
+direction = Vector3( 1, 1, 0 )
+spread = 50.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 317.74
+angular_velocity = 720.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 60.57
+damping = 15.86
+scale = 1.5
+scale_random = 1.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+hue_variation_random = 1.0
+
+[node name="candyWrapperRainParticleVfx" type="Node2D"]
+
+[node name="greenCandyWrapper" type="Particles2D" parent="."]
+amount = 5
+lifetime = 5.0
+preprocess = 200.93
+speed_scale = 0.2
+visibility_rect = Rect2( 0, -500, 2000, 3000 )
+process_material = SubResource( 5 )
+texture = ExtResource( 3 )
+
+[node name="blueCandyWrapper" type="Particles2D" parent="."]
+lifetime = 5.0
+preprocess = 200.93
+speed_scale = 0.1
+randomness = 0.23
+visibility_rect = Rect2( 0, -500, 2000, 3000 )
+process_material = SubResource( 5 )
+texture = ExtResource( 2 )
+
+[node name="redCandyWrapper" type="Particles2D" parent="."]
+lifetime = 5.0
+preprocess = 200.93
+speed_scale = 0.1
+visibility_rect = Rect2( 0, -500, 2000, 3000 )
+process_material = SubResource( 5 )
+texture = ExtResource( 1 )

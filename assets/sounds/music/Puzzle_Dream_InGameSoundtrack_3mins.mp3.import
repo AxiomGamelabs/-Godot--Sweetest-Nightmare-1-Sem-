@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Puzzle_Dream_InGameSoundtrack_3mins.mp3-eaec8a1fff4adba46bb1da5124038947.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/music/Puzzle_Dream_InGameSoundtrack_3mins.mp3"
+dest_files=[ "res://.import/Puzzle_Dream_InGameSoundtrack_3mins.mp3-eaec8a1fff4adba46bb1da5124038947.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

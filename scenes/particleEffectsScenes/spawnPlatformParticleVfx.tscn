@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/sprites/particles/bubbleParticle.png" type="Texture" id=1]
+[ext_resource path="res://scripts/particleVfxScripts/spawnPlatformParticleVfx.gd" type="Script" id=2]
+
+[sub_resource type="Curve" id=1]
+min_value = 0.01
+max_value = 0.2
+_data = [ Vector2( 0, 0.0445455 ), 0.0, -0.0163269, 0, 0, Vector2( 0.997481, 0.0272727 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 3.24
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 150.0
+gravity = Vector3( 10, 35, 10 )
+initial_velocity = 30.0
+angular_velocity = 200.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 100.0
+radial_accel = 50.0
+radial_accel_random = 0.5
+damping = 40.0
+scale = 2.0
+scale_random = 1.0
+scale_curve = SubResource( 2 )
+color = Color( 1, 1, 1, 0.713726 )
+hue_variation = -0.07
+hue_variation_random = 1.0
+
+[node name="spawnPlatformParticleVfx" type="Particles2D"]
+scale = Vector2( 5, 5 )
+emitting = false
+amount = 30
+lifetime = 0.5
+one_shot = true
+speed_scale = 0.7
+explosiveness = 1.0
+process_material = SubResource( 3 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="selfDestroyTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="selfDestroyTimer" to="." method="_on_selfDestroyTimer_timeout"]

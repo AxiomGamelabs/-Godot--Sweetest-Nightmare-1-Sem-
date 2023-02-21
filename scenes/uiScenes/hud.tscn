@@ -1,0 +1,798 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://assets/ui/hud/highHealth.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/pauseMenu/pauseButtonNormal.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/pauseMenu/pauseButtonHover.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/hud/hearthFull.png" type="Texture" id=4]
+[ext_resource path="res://uiThemes/uncannyTheme.tres" type="Theme" id=8]
+[ext_resource path="res://scripts/uiScripts/hud.gd" type="Script" id=9]
+[ext_resource path="res://scripts/uiScripts/hudPauseButton.gd" type="Script" id=10]
+[ext_resource path="res://assets/sprites/pickups/energy.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/pickups/bonbon.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/hud/energyBar5.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/lighting & glow/lightFade.png" type="Texture" id=14]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 9.23922, 1, 1, 0.101961 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "statusImagePulsatingGlow"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 9.23922, 1, 1, 0.117647 ), Color( 9.23922, 1, 1, 0.0392157 ), Color( 9.23922, 1, 1, 0.101961 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "glowSpriteOnHudHealth"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 1, 0, 0.235294 ), Color( 0, 1, 0, 0.0784314 ), Color( 0, 1, 0, 0.235294 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 500, 436 ), Vector2( 500, 436 ), Vector2( 500, 436 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "statusImagePulsatingGlow"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 9.23922, 1, 1, 0.117647 ), Color( 9.23922, 1, 1, 0.0392157 ), Color( 9.23922, 1, 1, 0.101961 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "healthImagePulsating"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 9.23922, 1, 1, 0.117647 ), Color( 9.23922, 1, 1, 0.0392157 ), Color( 9.23922, 1, 1, 0.101961 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "imageGlow"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 1, 0, 0.235294 ), Color( 0, 1, 0, 0.0784314 ), Color( 0, 1, 0, 0.235294 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 500, 436 ), Vector2( 500, 436 ), Vector2( 500, 436 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "statusImagePulsatingGlow"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 9.23922, 1, 1, 0.117647 ), Color( 9.23922, 1, 1, 0.0392157 ), Color( 9.23922, 1, 1, 0.101961 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "healthImagePulsating"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 9.23922, 1, 1, 0.117647 ), Color( 9.23922, 1, 1, 0.0392157 ), Color( 9.23922, 1, 1, 0.101961 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "imageGlow"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 1, 0, 0.235294 ), Color( 0, 1, 0, 0.0784314 ), Color( 0, 1, 0, 0.235294 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 500, 436 ), Vector2( 500, 436 ), Vector2( 500, 436 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "statusImagePulsatingGlow"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 9.23922, 1, 1, 0.117647 ), Color( 9.23922, 1, 1, 0.0392157 ), Color( 9.23922, 1, 1, 0.101961 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "healthImagePulsating"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 9.23922, 1, 1, 0.117647 ), Color( 9.23922, 1, 1, 0.0392157 ), Color( 9.23922, 1, 1, 0.101961 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "imageGlow"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 1, 0, 0.235294 ), Color( 0, 1, 0, 0.0784314 ), Color( 0, 1, 0, 0.235294 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 500, 436 ), Vector2( 500, 436 ), Vector2( 500, 436 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "statusImagePulsatingGlow"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 9.23922, 1, 1, 0.117647 ), Color( 9.23922, 1, 1, 0.0392157 ), Color( 9.23922, 1, 1, 0.101961 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "healthImagePulsating"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 9.23922, 1, 1, 0.117647 ), Color( 9.23922, 1, 1, 0.0392157 ), Color( 9.23922, 1, 1, 0.101961 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "imageGlow"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 1, 0, 0.235294 ), Color( 0, 1, 0, 0.0784314 ), Color( 0, 1, 0, 0.235294 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 500, 436 ), Vector2( 500, 436 ), Vector2( 500, 436 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "statusImagePulsatingGlow"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 9.23922, 1, 1, 0.117647 ), Color( 9.23922, 1, 1, 0.0392157 ), Color( 9.23922, 1, 1, 0.101961 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 12.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0.756863, 0.768627, 0.811765 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "rotateGlow"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 22.9, -7.6, 22.9, -7.6, 12.0, -3.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 2.63902 ),
+"update": 0,
+"values": [ Color( 1, 0.756863, 0.768627, 0.313726 ), Color( 1, 0.756863, 0.768627, 0.811765 ), Color( 1, 0.756863, 0.768627, 0.313726 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 7.85666 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "rotateImage"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.45, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 12.0, -12.0, 12.0, -12.0, 7.85666, -7.9, 0.0 ]
+}
+
+[node name="hud" type="Control"]
+margin_left = 36.0
+margin_top = 10.0
+margin_right = 1913.0
+margin_bottom = 286.0
+theme = ExtResource( 8 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="playerStats" type="Control" parent="."]
+margin_left = -25.0
+margin_top = 6.0
+margin_right = 469.0
+margin_bottom = 200.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="glowSprite" type="TextureRect" parent="playerStats"]
+visible = false
+modulate = Color( 9.23922, 1, 1, 0.101961 )
+show_behind_parent = true
+margin_left = -12.0
+margin_top = -16.0
+margin_right = 168.0
+margin_bottom = 141.0
+texture = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="animationPlayer" type="AnimationPlayer" parent="playerStats/glowSprite"]
+anims/RESET = SubResource( 2 )
+anims/statusImagePulsatingGlow = SubResource( 1 )
+
+[node name="status" type="TextureRect" parent="playerStats"]
+margin_top = 4.0
+margin_right = 136.0
+margin_bottom = 117.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="health" type="HBoxContainer" parent="playerStats"]
+margin_left = 146.0
+margin_top = 6.0
+margin_right = 1957.0
+margin_bottom = 274.0
+rect_scale = Vector2( 0.19, 0.19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="healthSprite1" type="TextureRect" parent="playerStats/health"]
+margin_right = 359.0
+margin_bottom = 268.0
+texture = ExtResource( 4 )
+
+[node name="glowSprite" type="TextureRect" parent="playerStats/health/healthSprite1"]
+visible = false
+modulate = Color( 0, 1, 0, 0.235294 )
+show_behind_parent = true
+margin_left = -63.1579
+margin_top = -100.0
+margin_right = 436.842
+margin_bottom = 336.0
+texture = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="animationPlayer" type="AnimationPlayer" parent="playerStats/health/healthSprite1/glowSprite"]
+anims/glowSpriteOnHudHealth = SubResource( 7 )
+anims/statusImagePulsatingGlow = SubResource( 9 )
+
+[node name="healthSprite2" type="TextureRect" parent="playerStats/health"]
+margin_left = 363.0
+margin_right = 722.0
+margin_bottom = 268.0
+texture = ExtResource( 4 )
+
+[node name="glowSprite2" type="TextureRect" parent="playerStats/health/healthSprite2"]
+visible = false
+modulate = Color( 9.23922, 1, 1, 0.117647 )
+show_behind_parent = true
+anchor_left = 0.938278
+anchor_top = -0.0196387
+anchor_right = 0.938278
+anchor_bottom = -0.0196387
+margin_left = -426.158
+margin_top = -100.0
+margin_right = 73.8425
+margin_bottom = 336.0
+texture = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="animationPlayer" type="AnimationPlayer" parent="playerStats/health/healthSprite2/glowSprite2"]
+anims/healthImagePulsating = SubResource( 11 )
+anims/imageGlow = SubResource( 12 )
+anims/statusImagePulsatingGlow = SubResource( 13 )
+
+[node name="healthSprite3" type="TextureRect" parent="playerStats/health"]
+margin_left = 726.0
+margin_right = 1085.0
+margin_bottom = 268.0
+texture = ExtResource( 4 )
+
+[node name="glowSprite3" type="TextureRect" parent="playerStats/health/healthSprite3"]
+visible = false
+modulate = Color( 9.23922, 1, 1, 0.117647 )
+show_behind_parent = true
+anchor_left = 1.99384
+anchor_right = 1.99384
+margin_left = -789.158
+margin_top = -100.0
+margin_right = -289.157
+margin_bottom = 336.0
+texture = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="animationPlayer" type="AnimationPlayer" parent="playerStats/health/healthSprite3/glowSprite3"]
+anims/healthImagePulsating = SubResource( 14 )
+anims/imageGlow = SubResource( 15 )
+anims/statusImagePulsatingGlow = SubResource( 16 )
+
+[node name="healthSprite4" type="TextureRect" parent="playerStats/health"]
+margin_left = 1089.0
+margin_right = 1448.0
+margin_bottom = 268.0
+texture = ExtResource( 4 )
+
+[node name="glowSprite4" type="TextureRect" parent="playerStats/health/healthSprite4"]
+visible = false
+modulate = Color( 9.23922, 1, 1, 0.117647 )
+show_behind_parent = true
+anchor_left = 2.94678
+anchor_top = -0.0196387
+anchor_right = 2.94678
+anchor_bottom = -0.0196387
+margin_left = -1152.16
+margin_top = -100.0
+margin_right = -652.158
+margin_bottom = 336.0
+texture = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="animationPlayer" type="AnimationPlayer" parent="playerStats/health/healthSprite4/glowSprite4"]
+anims/healthImagePulsating = SubResource( 17 )
+anims/imageGlow = SubResource( 18 )
+anims/statusImagePulsatingGlow = SubResource( 19 )
+
+[node name="healthSprite5" type="TextureRect" parent="playerStats/health"]
+margin_left = 1452.0
+margin_right = 1811.0
+margin_bottom = 268.0
+texture = ExtResource( 4 )
+
+[node name="glowSprite5" type="TextureRect" parent="playerStats/health/healthSprite5"]
+visible = false
+modulate = Color( 9.23922, 1, 1, 0.117647 )
+show_behind_parent = true
+anchor_left = 4.00234
+anchor_right = 4.00234
+margin_left = -1515.16
+margin_top = -100.0
+margin_right = -1015.16
+margin_bottom = 336.0
+texture = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="animationPlayer" type="AnimationPlayer" parent="playerStats/health/healthSprite5/glowSprite5"]
+anims/healthImagePulsating = SubResource( 20 )
+anims/imageGlow = SubResource( 21 )
+anims/statusImagePulsatingGlow = SubResource( 22 )
+
+[node name="energy" type="Control" parent="playerStats"]
+margin_left = 164.0
+margin_top = 47.0
+margin_right = 498.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="energyBarSprite" type="TextureRect" parent="playerStats/energy"]
+margin_left = -3.0
+margin_top = 27.0
+margin_right = 260.0
+margin_bottom = 64.0
+texture = ExtResource( 13 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spriteGlow" type="Sprite" parent="playerStats/energy"]
+visible = false
+modulate = Color( 1, 0.756863, 0.768627, 0.811765 )
+position = Vector2( -1.20259, 41 )
+rotation = 0.20944
+scale = Vector2( 0.052659, 0.0888411 )
+texture = ExtResource( 14 )
+
+[node name="animationPlayer" type="AnimationPlayer" parent="playerStats/energy/spriteGlow"]
+anims/RESET = SubResource( 3 )
+anims/rotateGlow = SubResource( 4 )
+
+[node name="energySprite" type="TextureRect" parent="playerStats/energy"]
+margin_left = -250.0
+margin_top = -371.0
+margin_right = 248.0
+margin_bottom = 450.0
+rect_rotation = 7.85666
+rect_scale = Vector2( 0.08, 0.08 )
+rect_pivot_offset = Vector2( 249, 410 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="animationPlayer" type="AnimationPlayer" parent="playerStats/energy/energySprite"]
+anims/RESET = SubResource( 5 )
+anims/rotateImage = SubResource( 6 )
+
+[node name="bonus" type="Control" parent="playerStats"]
+margin_left = 14.0
+margin_top = 123.0
+margin_right = 232.0
+margin_bottom = 207.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bonusImg" type="TextureRect" parent="playerStats/bonus"]
+margin_left = 11.0
+margin_top = 16.0
+margin_right = 115.0
+margin_bottom = 69.0
+texture = ExtResource( 12 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bonusText" type="Label" parent="playerStats/bonus"]
+margin_left = 93.0
+margin_top = 8.0
+margin_right = 234.0
+margin_bottom = 81.0
+text = "0/17"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tooltips" type="Control" parent="."]
+margin_left = -23.0
+margin_right = 477.0
+margin_bottom = 202.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="statusTooltip" type="Control" parent="tooltips"]
+margin_left = -4.0
+margin_top = 8.0
+margin_right = 139.0
+margin_bottom = 123.0
+hint_tooltip = "Shows your current health status"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="healthTooltip" type="Control" parent="tooltips"]
+margin_left = 143.0
+margin_top = 12.0
+margin_right = 489.0
+margin_bottom = 67.0
+hint_tooltip = "Collect hearts to refill your health"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="energyTooltip" type="Control" parent="tooltips"]
+margin_left = 144.0
+margin_top = 75.0
+margin_right = 426.0
+margin_bottom = 126.0
+hint_tooltip = "This bar reflects the size of your platforms"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bonusTooltip" type="Control" parent="tooltips"]
+margin_left = 22.0
+margin_top = 143.0
+margin_right = 199.0
+margin_bottom = 201.0
+hint_tooltip = "Try to collect all bonibonbons!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="messages" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="youAreFullHealthMsg" type="Label" parent="messages"]
+visible = false
+margin_left = 775.0
+margin_top = -5.0
+margin_right = 1297.0
+margin_bottom = 68.0
+text = "Your Health is full. Cannot collect."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="setHealthMsgInvisibleAgainTimer" type="Timer" parent="messages/youAreFullHealthMsg"]
+wait_time = 0.8
+
+[node name="youAreFullEnergyMsg" type="Label" parent="messages"]
+visible = false
+margin_left = 775.0
+margin_top = -4.0
+margin_right = 1314.0
+margin_bottom = 69.0
+text = "Your Energy is full. Cannot collect."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="setEnergyMsgInvisibleAgainTimer" type="Timer" parent="messages/youAreFullEnergyMsg"]
+wait_time = 0.8
+
+[node name="pauseButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = 15.0
+margin_right = -27.0
+margin_bottom = 52.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 3 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="messages/youAreFullHealthMsg/setHealthMsgInvisibleAgainTimer" to="." method="_on_setHealthMsgInvisibleAgainTimer_timeout"]
+[connection signal="timeout" from="messages/youAreFullEnergyMsg/setEnergyMsgInvisibleAgainTimer" to="." method="_on_setEnergyMsgInvisibleAgainTimer_timeout"]

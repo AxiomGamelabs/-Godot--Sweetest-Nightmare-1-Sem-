@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/sprites/jelly/jellyTexture.png" type="Texture" id=1]
+
+[node name="Polygon2D" type="Polygon2D"]
+position = Vector2( 0, 19.2414 )
+scale = Vector2( 1.00556, 0.793103 )
+texture = ExtResource( 1 )
+polygon = PoolVector2Array( 0, -10, 180, -23, 179.006, 91.8846, 2, 93 )
+uv = PoolVector2Array( 0.436676, 1.74672, 392.14, 0.436684, 392, 110, 1, 110 )
