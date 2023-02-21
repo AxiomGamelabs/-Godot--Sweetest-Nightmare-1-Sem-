@@ -4,7 +4,7 @@
 Homepage: https://sweetest-nightmare.school4games.net/ <br>
 Itch Page: https://s4g.itch.io/sweetest-nightmare
 
-#### 2D side-scroller stealth game made with Unity
+#### 2D side-scroller platformer game made with Godot
 "Sweetest Nightmare" is a 2D side-scroller Platformer Game, set in a "Dark Candy" World, where you create your own timed platforms to overcome the hazardous environment.
 
 #### Roles
