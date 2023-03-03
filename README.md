@@ -10,6 +10,7 @@ Itch Page: https://s4g.itch.io/sweetest-nightmare
 #### Roles
 - Engineer
 - Producer
+- Co-Designer
 - Vision Keeper
 
 #### Engine / Languages
