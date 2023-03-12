@@ -24,5 +24,5 @@ Itch Page: https://s4g.itch.io/sweetest-nightmare
 - Select "Import" and Browse to the "project.godot" file inside the "Sweetest-Nightmare-master" folder
 - Click on the "project.godot" file and Open it
 - Select "Import & Edit"
-- Now click F5 (Play) or go to the "scenes" folder or open the "level1.tscn" scene to look at the main scene structure
+- Now click F5 (Play) or go to the "scenes" folder or open the "level1.tscn" scene in the "scenes" folder to look at the main scene structure
 
