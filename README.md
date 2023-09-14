@@ -5,7 +5,7 @@ Homepage: https://sweetest-nightmare.school4games.net/ <br>
 Itch Page: https://s4g.itch.io/sweetest-nightmare
 
 #### 2D side-scroller platformer game in a "Dark Candy" setting made with Godot
-"Sweetest Nightmare" is a 2D side-scroller Platformer Game, set in a "Dark Candy" World, where you create your own timed platforms to overcome the hazardous environment.
+"Sweetest Nightmare" is a 2D side-scroller Platformer Game, set in a "Dark Candy" World, where you create your own timed platforms to overcome the hazardous environment or to use them as shields against traps.
 
 #### Roles
 - Engineer
